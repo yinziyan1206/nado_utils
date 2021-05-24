@@ -1,2 +1,2 @@
-# nado-utils
+# nado_utils
 nado utility package
