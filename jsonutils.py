@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'ziyan.yin'
 
+import datetime
 import decimal
 from dataclasses import is_dataclass, asdict
 from enum import Enum
@@ -10,8 +11,12 @@ import json
 
 
 def json_default(obj):
-    if type(obj) is decimal.Decimal:
+    if isinstance(obj, decimal.Decimal):
         return float(obj)
+    elif isinstance(obj, datetime.datetime):
+        return obj.strftime('%Y-%m-%d %H:%M:%S')
+    elif isinstance(obj, datetime.date):
+        return obj.strftime('%Y-%m-%d')
     elif is_dataclass(obj):
         return asdict(obj)
     elif issubclass(obj.__class__, Enum):
