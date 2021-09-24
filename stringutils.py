@@ -60,7 +60,7 @@ def is_date(arg: str, base='%Y-%m-%d %H:%M:%S'):
     try:
         datetime.datetime.strptime(arg, base)
         return True
-    except TypeError:
+    except (TypeError, ValueError):
         return False
 
 
